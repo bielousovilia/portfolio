@@ -41,10 +41,6 @@ p {
     padding: 0px;
 }
 
-.text_style {
-    opacity: 0.8;
-}
-
 section,
 header {
     border-bottom: 1.2px solid #e3e3e3;
@@ -52,6 +48,18 @@ header {
 
 li {
     list-style-type: none;
+}
+
+.title_style {
+    padding-top: 30px;
+}
+
+.text_style {
+    opacity: 0.8;
+}
+
+.border-none {
+    border: none !important;
 }
 
 body.lock {
@@ -217,26 +225,26 @@ body.lock {
     }
 }
 
+// !SKILLS STYLE
 .skills {
-
-    &__about {
-    }
-
-    &__title {
-        padding-top: 30px;
-    }
-
-    &__text {
-    }
-
     &__box {
         padding: 33px 0px;
         border-bottom: 1px solid #e3e3e3;
     }
+}
 
-    &__box-title {
-    }
+.education {
+    &__box {
+        padding: 10px 0px;
+        
+        &:first-child {
+            padding-top: 30px;
+        }
 
-    &__box-text {
+        &:last-child {
+            padding-bottom: 30px;
+        }
+
+        border-bottom: 1px solid #e3e3e3;
     }
 }
