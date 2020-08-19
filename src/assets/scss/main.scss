@@ -1,0 +1,24 @@
+html,
+body {
+    height: 100%;
+}
+
+body.lock {
+    overflow: hidden;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 100%;
+
+    .content {
+        flex: 1 0 auto;
+    }
+
+    .footer {
+        flex: 0 0 auto;
+    }
+}
