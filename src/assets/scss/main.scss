@@ -138,8 +138,6 @@ body.lock {
 }
 
 .menu {
-    text-align: right;
-
     &__item {
         margin-right: 25px;
         padding: 8px 5px;
@@ -315,4 +313,62 @@ body.lock {
     padding: 20px 0px;
 
     background-color: #efefef;
+}
+
+// !PORTFOLIO STYLE
+.portfolio {
+    padding-bottom: 30px;
+
+    &__about {
+    }
+
+    &__title {
+    }
+
+    &__list {
+        padding-left: 0px;
+    }
+
+    &__item {
+        margin-right: 25px;
+        padding: 0px 5px;
+        font-size: 12.6px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        line-height: 1.66;
+        text-transform: uppercase;
+        transition: 0.3s ease;
+
+        &:hover {
+            color: #3333ff;
+        }
+    }
+
+    &__modal {
+        display: block;
+        padding: 0px 10px;
+        color: #252525;
+        text-decoration: none;
+
+        @media (max-width: 992px) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__img {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__project {
+    }
+
+    &__project-name {
+    }
+
+    &__project-time {
+    }
 }
