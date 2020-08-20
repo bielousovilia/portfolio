@@ -112,7 +112,7 @@ li {
     }
 }
 
-body.lock {
+.body-lock {
     overflow: hidden;
 }
 
@@ -170,6 +170,29 @@ body.lock {
 }
 
 .menu {
+    @media (max-width: 992px) {
+        position: fixed;
+        top: 0px;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        transition: 0.3s ease;
+        overflow: auto;
+        background-color: #3333ff;
+
+        &.active {
+            left: 0px;
+        }
+    }
+
+    &__list {
+        @media (max-width: 992px) {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+    }
+
     &__item {
         margin-right: 25px;
         padding: 8px 5px;
@@ -192,8 +215,8 @@ body.lock {
     display: none;
 
     .svg-icon {
-        width: 1em;
-        height: 1em;
+        width: 30px;
+        height: 30px;
     }
 
     .svg-icon circle {
