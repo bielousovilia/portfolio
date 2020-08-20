@@ -90,6 +90,22 @@ li {
 
 }
 
+.svg-icon {
+    width: 19px;
+    height: 19px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #252525;
+}
+
+.svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+}
+
 body.lock {
     overflow: hidden;
 }
@@ -189,6 +205,14 @@ body.lock {
         }
     }
 
+    &__icon {
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+
     &__text {
         padding-left: 60px;
         font-size: 14px;
@@ -245,7 +269,7 @@ body.lock {
 .education {
     &__box {
         padding: 10px 0px;
-        
+
         &:first-child {
             padding-top: 30px;
         }
@@ -319,11 +343,9 @@ body.lock {
 .portfolio {
     padding-bottom: 30px;
 
-    &__about {
-    }
+    &__about {}
 
-    &__title {
-    }
+    &__title {}
 
     &__list {
         padding-left: 0px;
@@ -363,12 +385,9 @@ body.lock {
         }
     }
 
-    &__project {
-    }
+    &__project {}
 
-    &__project-name {
-    }
+    &__project-name {}
 
-    &__project-time {
-    }
+    &__project-time {}
 }
