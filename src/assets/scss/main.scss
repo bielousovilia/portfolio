@@ -408,10 +408,6 @@ li {
 .portfolio {
     padding-bottom: 30px;
 
-    &__about {}
-
-    &__title {}
-
     &__list {
         padding-left: 0px;
     }
@@ -425,6 +421,7 @@ li {
         line-height: 1.66;
         text-transform: uppercase;
         transition: 0.3s ease;
+        cursor: pointer;
 
         &:hover {
             color: #3333ff;
@@ -445,19 +442,70 @@ li {
         @media (max-width: 992px) {
             margin-bottom: 15px;
         }
+
+        &:hover>.portfolio__img img {
+            transform: scale(1.3);
+        }
+
+        &:hover>.portfolio__project>.portfolio__project-name {
+            color: #3333ff;
+        }
     }
 
     &__img {
+        overflow: hidden;
 
         img {
             width: 100%;
             height: auto;
+            transition: all 0.4s;
         }
     }
 
     &__project {}
 
-    &__project-name {}
+    &__project-name {
+        transition: all 0.4s;
+    }
 
     &__project-time {}
+}
+
+.active-item {
+    color: #3333ff;
+}
+
+.active-filter {
+    animation: show 0.4s;
+}
+
+.noactive-filter {
+    animation: hide 0.41s;
+}
+
+.items {
+    justify-content: center !important;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
 }
