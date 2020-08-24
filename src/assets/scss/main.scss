@@ -117,6 +117,7 @@ li {
 }
 
 .wrap {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -470,6 +471,140 @@ li {
 
     &__project-time {}
 }
+
+.showModal {
+    display: block;
+}
+
+.hideModal {
+    display: none;
+}
+
+.modal {
+
+    &__contact,
+    &__portfolio {
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+
+        &:before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: #000;
+            opacity: 0.2;
+        }
+    }
+
+    &__contact-wrap,
+    &__portfolio-wrap {
+        position: fixed;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 25px;
+
+        @media (min-width: 992px) {
+            width: 70%;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 13px;
+            width: 90%;
+        }
+
+        @media (max-width: 576px) {
+            font-size: 11px;
+        }
+    }
+
+    &__wrap {
+        .about {
+            padding: 0px;
+        }
+    }
+
+    &__title {}
+
+    &__sign {}
+
+    &__contact-form {}
+
+    &__portfolio {
+
+        .modal__sign {
+            margin-bottom: 25px;
+        }
+    }
+
+    &__portfolio-wrap {
+        padding: 25px 45px;
+    }
+
+    &__portfolio-title {}
+
+    &__portfolio-images {
+        margin-bottom: 35px;
+        
+        img {
+            margin-bottom: 25px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+
+.contact {
+
+    &__form {}
+
+    &__input {}
+
+    &__area {}
+
+    &__submit {}
+
+    &__link {}
+}
+
+.about {
+
+    &__contacts {}
+
+    &__contacts-line {}
+
+    &__phone {
+
+        &_style {}
+    }
+
+    &__text {}
+
+    &__email {}
+
+    &__modals {
+        margin-bottom: 25px;
+    }
+
+    &__btn-modal {}
+
+    &__btn {
+
+        &_style {}
+    }
+
+    &__btn-cv {}
+}
+
 
 .active-item {
     color: #3333ff;
