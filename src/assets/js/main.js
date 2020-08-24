@@ -38,8 +38,6 @@ window.addEventListener('DOMContentLoaded', () => {
     pos.push(elem.getBoundingClientRect().top);
   });
 
-  console.log(pos);
-
   function widthDevice() {
     if (window.screen.width >= 769) {
       speed = 4;
@@ -67,6 +65,9 @@ window.addEventListener('DOMContentLoaded', () => {
         let timer = setInterval(() => {
           if (sign === '-') {
             if (Math.round(positionNow) >= Math.round(position)) {
+              if (Math.round(positionNow) - Math.round(position) <= 20) {
+                positionNow -= 1;
+              }
               positionNow -= speed;
               document.documentElement.scrollTop = positionNow;
             } else {
@@ -74,6 +75,9 @@ window.addEventListener('DOMContentLoaded', () => {
             }
           } else {
             if (Math.round(positionNow) <= Math.round(position)) {
+              if (Math.round(position) - Math.round(positionNow) <= 20) {
+                positionNow += 1;
+              }
               positionNow += speed;
               document.documentElement.scrollTop = positionNow;
             } else {
@@ -90,9 +94,9 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsLinks = document.querySelectorAll('.portfolio__item'),
     parent = document.querySelector('.parent');
 
-    async function func(item, display = 'none') {
-        item.style.display = display;
-    }
+  async function func(item, display = 'none') {
+    item.style.display = display;
+  }
 
   function showItems(attr = 'none') {
     projects.forEach(project => {
@@ -127,5 +131,30 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // !MODALS
+  function modal(triggerSelector, modalSelector) {
+    const triggerContactModal = document.querySelectorAll(triggerSelector),
+    modalContact = document.querySelector(modalSelector);
+
+  triggerContactModal.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+  
+      modalContact.classList.remove('hideModal');
+      modalContact.classList.add('showModal');
+    });
+  });
+
+  modalContact.addEventListener('click', (e) => {
+    if (e.target === modalContact) {
+      modalContact.classList.remove('showModal');
+      modalContact.classList.add('hideModal');
+    }
+  });
+  }
+
+  modal('.about__btn-modal', '.modal__contact');
+  modal('.portfolio__modal', '.modal__portfolio');
 
 });
