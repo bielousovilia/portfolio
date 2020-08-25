@@ -11,9 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('body-lock');
   });
 
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      if (window.screen.width <= 769) {
+  menu.addEventListener('click', function(e) {
+    menuItems.forEach(item => {
+      if (window.screen.width <= 992 && e.target && e.target === item || e.target === menu) {
         menu.classList.toggle('active');
         document.body.classList.toggle('body-lock');
       }
@@ -104,26 +104,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function showItems(attr = 'none') {
     projects.forEach(project => {
-      project.classList.remove('active-filter');
-      project.classList.add('noactive-filter');
+      project.classList.remove('active');
+      project.classList.add('noactive');
       func(project);
 
       if (project.hasAttribute(attr)) {
-        project.classList.remove('noactive-filter');
-        project.classList.add('active-filter');
+        project.classList.remove('noactive');
+        project.classList.add('active');
         func(project, 'block');
         parent.classList.add('items');
       }
 
       if (attr === 'none') {
-        project.classList.remove('noactive-filter');
-        project.classList.add('active-filter');
+        project.classList.remove('noactive');
+        project.classList.add('active');
         func(project, 'block');
         parent.classList.remove('items');
       }
     });
   }
-  
+
 
   function hideActiveItem() {
     projectsLinks.forEach(item => {
@@ -147,30 +147,51 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // !MODALS
-  function modal(triggerSelector, modalSelector) {
+  function modal(triggerSelector, modalSelector, modalCloseSelector) {
     const triggerContactModal = document.querySelectorAll(triggerSelector),
-    modalContact = document.querySelector(modalSelector);
+      modalContact = document.querySelector(modalSelector),
+      modalClose = document.querySelectorAll(modalCloseSelector);
 
-  triggerContactModal.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-  
-      modalContact.classList.remove('hideModal');
-      modalContact.classList.add('showModal');
-      document.body.classList.add('body-lock');
+    triggerContactModal.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        modalContact.classList.remove('hideModal');
+        modalContact.classList.add('showModal');
+        modalContact.classList.remove('noactive');
+        modalContact.classList.add('active');
+        document.body.classList.add('body-lock');
+      });
     });
-  });
 
-  modalContact.addEventListener('click', (e) => {
-    if (e.target === modalContact) {
-      modalContact.classList.remove('showModal');
-      modalContact.classList.add('hideModal');
-      document.body.classList.remove('body-lock');
-    }
-  });
+    modalContact.addEventListener('click', (e) => {
+      if (e.target === modalContact) {
+        setTimeout(() => {
+          modalContact.classList.remove('showModal');
+          modalContact.classList.add('hideModal');
+        }, 400);
+        modalContact.classList.remove('active');
+        modalContact.classList.add('noactive');
+        document.body.classList.remove('body-lock');
+      }
+    });
+
+    modalClose.forEach(close => {
+      close.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        setTimeout(() => {
+          modalContact.classList.remove('showModal');
+          modalContact.classList.add('hideModal');
+        }, 400);
+        modalContact.classList.remove('active');
+        modalContact.classList.add('noactive');
+        document.body.classList.remove('body-lock');
+      });
+    });
   }
 
-  modal('.about__btn-modal', '.modal__contact');
-  modal('.portfolio__modal', '.modal__portfolio');
+  modal('.about__btn-modal', '.modal__contact', '[data-close]');
+  modal('.portfolio__modal', '.modal__portfolio', '[data-close]');
 
 });

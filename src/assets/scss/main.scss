@@ -289,7 +289,7 @@ li {
     &__modals {
         margin-bottom: 35px;
 
-        @media (max-width: 430px) {
+        @media (max-width: 470px) {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -299,7 +299,7 @@ li {
     &__btn_style {
         @include btn_style;
 
-        @media (max-width: 430px) {
+        @media (max-width: 470px) {
             width: 100%;
         }
     }
@@ -307,7 +307,7 @@ li {
     &__btn-modal {
         @include btn_style_for_submit;
 
-        @media (max-width: 430px) {
+        @media (max-width: 470px) {
             margin-bottom: 25px;
         }
 
@@ -515,9 +515,14 @@ li {
             width: 70%;
         }
 
+        @media (max-width: 992px) {
+            overflow: auto;
+            width: 100%;
+            height: 100%;
+        }
+
         @media (max-width: 768px) {
             font-size: 13px;
-            width: 90%;
         }
 
         @media (max-width: 576px) {
@@ -552,9 +557,13 @@ li {
 
     &__portfolio-images {
         margin-bottom: 35px;
+        text-align: center;
         
         img {
+            max-width: 100%;
+            max-height: 400px;
             margin-bottom: 25px;
+            object-fit: cover;
 
             &:last-child {
                 margin-bottom: 0px;
@@ -564,57 +573,51 @@ li {
 }
 
 .contact {
+    &__submit {
+        @media (max-width: 470px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
 
-    &__form {}
+    &__link,
+    &__cv {
+        @media (max-width: 470px) {
+            width: 100%;
+        }
+    }
 
-    &__input {}
+    &__link {
+        margin-right: 25px;
 
-    &__area {}
+        @media (max-width: 470px) {
+            margin-bottom: 20px;
+            margin-right: 0px;
+        }
+    }
 
-    &__submit {}
-
-    &__link {}
+    &__cv {
+        @include btn_style;
+    }
 }
 
 .about {
-
-    &__contacts {}
-
-    &__contacts-line {}
-
-    &__phone {
-
-        &_style {}
-    }
-
-    &__text {}
-
-    &__email {}
-
     &__modals {
         margin-bottom: 25px;
     }
 
-    &__btn-modal {}
-
-    &__btn {
-
-        &_style {}
-    }
-
-    &__btn-cv {}
 }
-
 
 .active-item {
     color: #3333ff;
 }
 
-.active-filter {
+.active {
     animation: show 0.4s;
 }
 
-.noactive-filter {
+.noactive {
     animation: hide 0.41s;
 }
 
@@ -625,22 +628,23 @@ li {
 @keyframes show {
     from {
         opacity: 0;
-        transform: translate3d(0, -100%, 0);
+        visibility: hidden;
     }
 
     to {
+        visibility: visible;
         opacity: 1;
-        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes hide {
     from {
+        visibility: visible;
         opacity: 1;
     }
 
     to {
         opacity: 0;
-        transform: translate3d(0, 100%, 0);
+        visibility: hidden;
     }
 }
