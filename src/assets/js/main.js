@@ -35,14 +35,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const elements = document.querySelectorAll(arr);
 
   elements.forEach(elem => {
-    pos.push(elem.getBoundingClientRect().top);
+    pos.push(elem.getBoundingClientRect().top - document.body.getBoundingClientRect().top);
   });
 
   function widthDevice() {
     if (window.screen.width >= 769) {
-      speed = 4;
+      speed = 6;
     } else {
-      speed = 7;
+      speed = 8;
     }
   }
 
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
 
-      let scrollWindow = document.documentElement.scrollTop;
+      let scrollWindow = document.documentElement.scrollTop || document.body.scrollTop;
       let y = pos[i] - header.clientHeight;
 
       if (scrollWindow > y) {
@@ -65,21 +65,25 @@ window.addEventListener('DOMContentLoaded', () => {
         let timer = setInterval(() => {
           if (sign === '-') {
             if (Math.round(positionNow) >= Math.round(position)) {
-              if (Math.round(positionNow) - Math.round(position) <= 20) {
+              if (Math.round(positionNow) - Math.round(position) <= 10) {
                 positionNow -= 1;
+                document.documentElement.scrollTop = positionNow;
+              } else {
+                positionNow -= speed;
+                document.documentElement.scrollTop = positionNow;
               }
-              positionNow -= speed;
-              document.documentElement.scrollTop = positionNow;
             } else {
               timer = clearInterval();
             }
           } else {
             if (Math.round(positionNow) <= Math.round(position)) {
-              if (Math.round(position) - Math.round(positionNow) <= 20) {
+              if (Math.round(position) - Math.round(positionNow) <= 10) {
                 positionNow += 1;
+                document.documentElement.scrollTop = Math.abs(positionNow);
+              } else {
+                positionNow += speed;
+                document.documentElement.scrollTop = Math.abs(positionNow);
               }
-              positionNow += speed;
-              document.documentElement.scrollTop = positionNow;
             } else {
               timer = clearInterval();
             }
