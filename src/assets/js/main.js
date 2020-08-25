@@ -98,7 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
     projectsLinks = document.querySelectorAll('.portfolio__item'),
     parent = document.querySelector('.parent');
 
-  async function func(item, display = 'none') {
+  function func(item, display = 'none') {
     item.style.display = display;
   }
 
@@ -123,9 +123,19 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  
+
+  function hideActiveItem() {
+    projectsLinks.forEach(item => {
+      item.classList.remove('active-item');
+    });
+  }
 
   projectsLinks.forEach(item => {
     item.addEventListener('click', function () {
+      hideActiveItem();
+      this.classList.add('active-item');
+
       if (item.hasAttribute('data-frontend')) {
         showItems('data-frontend');
       } else if (item.hasAttribute('data-website')) {
@@ -147,6 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
       modalContact.classList.remove('hideModal');
       modalContact.classList.add('showModal');
+      document.body.classList.add('body-lock');
     });
   });
 
@@ -154,6 +165,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalContact) {
       modalContact.classList.remove('showModal');
       modalContact.classList.add('hideModal');
+      document.body.classList.remove('body-lock');
     }
   });
   }
