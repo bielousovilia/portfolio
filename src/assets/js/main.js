@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('body-lock');
   });
 
-  menu.addEventListener('click', function(e) {
+  menu.addEventListener('click', function (e) {
     menuItems.forEach(item => {
       if (window.screen.width <= 992 && e.target && e.target === item || e.target === menu) {
         menu.classList.toggle('active');
@@ -147,51 +147,74 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // !MODALS
-  function modal(triggerSelector, modalSelector, modalCloseSelector) {
+  function modal(triggerSelector, modalSelector, modalCloseSelector, itemsSelector = 'none') {
     const triggerContactModal = document.querySelectorAll(triggerSelector),
-      modalContact = document.querySelector(modalSelector),
-      modalClose = document.querySelectorAll(modalCloseSelector);
+      modals = document.querySelectorAll(modalSelector),
+      modalClose = document.querySelectorAll(modalCloseSelector),
+      items = document.querySelectorAll(itemsSelector),
+      images = ['./assets/images/oleksandr_sites.png', './assets/images/mavic__sites.png', '', './assets/images/burger__sites.png'],
+      urls = ['http://oleksandrkornieiev-flute.com/', 'http://mavic.bielousov-dev.ru/', '', 'http://burger.bielousov-dev.ru/'];
 
     triggerContactModal.forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
-
-        modalContact.classList.remove('hideModal');
-        modalContact.classList.add('showModal');
-        modalContact.classList.remove('noactive');
-        modalContact.classList.add('active');
-        document.body.classList.add('body-lock');
+        
+        modals.forEach((modal, i) => {
+          if (modal.hasAttribute('data-modalPortfolio')) {
+            items.forEach((item, i) => {
+              if (e.target && e.target.closest('.portfolio__parent') == item) {
+                modal.querySelector('img').src = images[i];
+                modal.querySelector('.about__btn-modal').href = urls[i];
+                modal.classList.remove('hideModal');
+                modal.classList.add('showModal');
+                modal.classList.remove('noactive');
+                modal.classList.add('active');
+                document.body.classList.add('body-lock');
+              }
+            });
+          } else {
+            modal.classList.remove('hideModal');
+            modal.classList.add('showModal');
+            modal.classList.remove('noactive');
+            modal.classList.add('active');
+            document.body.classList.add('body-lock');
+          }
+        });
       });
     });
 
-    modalContact.addEventListener('click', (e) => {
-      if (e.target === modalContact) {
-        setTimeout(() => {
-          modalContact.classList.remove('showModal');
-          modalContact.classList.add('hideModal');
-        }, 400);
-        modalContact.classList.remove('active');
-        modalContact.classList.add('noactive');
-        document.body.classList.remove('body-lock');
-      }
+    modals.forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          setTimeout(() => {
+            modal.classList.remove('showModal');
+            modal.classList.add('hideModal');
+          }, 400);
+          modal.classList.remove('active');
+          modal.classList.add('noactive');
+          document.body.classList.remove('body-lock');
+        }
+      });
     });
 
     modalClose.forEach(close => {
       close.addEventListener('click', function (e) {
         e.preventDefault();
 
-        setTimeout(() => {
-          modalContact.classList.remove('showModal');
-          modalContact.classList.add('hideModal');
-        }, 400);
-        modalContact.classList.remove('active');
-        modalContact.classList.add('noactive');
-        document.body.classList.remove('body-lock');
+        modals.forEach(modal => {
+          setTimeout(() => {
+            modal.classList.remove('showModal');
+            modal.classList.add('hideModal');
+          }, 400);
+          modal.classList.remove('active');
+          modal.classList.add('noactive');
+          document.body.classList.remove('body-lock');
+        });
       });
     });
   }
 
-  modal('.about__btn-modal', '.modal__contact', '[data-close]');
-  modal('.portfolio__modal', '.modal__portfolio', '[data-close]');
+  modal('.about__go', '.modal__contact', '[data-close]');
+  modal('.portfolio__modal', '.modal__portfolio', '[data-close]', '.portfolio__parent');
 
 });

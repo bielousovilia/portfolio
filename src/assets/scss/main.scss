@@ -457,8 +457,10 @@ li {
         overflow: hidden;
 
         img {
+            display: block;
             width: 100%;
-            height: auto;
+            height: 270px;
+            object-fit: cover;
             transition: all 0.4s;
         }
     }
@@ -466,6 +468,7 @@ li {
     &__project {}
 
     &__project-name {
+        padding-top: 10px;
         transition: all 0.4s;
     }
 
@@ -522,6 +525,8 @@ li {
         }
 
         @media (max-width: 768px) {
+            padding-left: 5px;
+            padding-right: 5px;
             font-size: 13px;
         }
 
@@ -551,6 +556,11 @@ li {
 
     &__portfolio-wrap {
         padding: 25px 45px;
+
+        @media (max-width: 768px) {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
     }
 
     &__portfolio-title {}
