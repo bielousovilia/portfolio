@@ -124,7 +124,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   function hideActiveItem() {
     projectsLinks.forEach(item => {
       item.classList.remove('active-item');
@@ -152,8 +151,36 @@ window.addEventListener('DOMContentLoaded', () => {
       modals = document.querySelectorAll(modalSelector),
       modalClose = document.querySelectorAll(modalCloseSelector),
       items = document.querySelectorAll(itemsSelector),
-      images = ['./assets/images/oleksandr_sites.png', './assets/images/mavic__sites.png', '', './assets/images/burger__sites.png'],
-      urls = ['http://oleksandrkornieiev-flute.com/', 'http://mavic.bielousov-dev.ru/', '', 'http://burger.bielousov-dev.ru/'];
+      sites = [
+        {
+          image: './assets/images/oleksandr_sites.png',
+          url: 'http://oleksandrkornieiev-flute.com/',
+          title: 'Oleksandr Kornieiev site',
+          stack: 'Html, CSS, ES6, Gulp + Webpack',
+          data: 'August, 2020'
+        },
+        {
+          image: './assets/images/mavic__sites.png',
+          url: 'http://mavic.bielousov-dev.ru/',
+          title: 'Mavic Pro landing',
+          stack: 'Html, CSS, ES6, gulp + Webpack',
+          data: 'July, 2020'
+        },
+        {
+          image: '/assets/images/startUp__sites.png',
+          url: 'http://startup.bielousov-dev.ru/',
+          title: 'StartUp landing',
+          stack: 'Html, CSS, jQuery, gulp',
+          data: 'June, 2020'
+        },
+        {
+          image: './assets/images/burger__sites.png',
+          url: 'http://burger.bielousov-dev.ru/',
+          title: 'Burger landing',
+          stack: 'Html, CSS, jQuery, gulp',
+          data: 'June, 2020'
+        }
+      ];
 
     triggerContactModal.forEach(trigger => {
       trigger.addEventListener('click', (e) => {
@@ -163,8 +190,11 @@ window.addEventListener('DOMContentLoaded', () => {
           if (modal.hasAttribute('data-modalPortfolio')) {
             items.forEach((item, i) => {
               if (e.target && e.target.closest('.portfolio__parent') == item) {
-                modal.querySelector('img').src = images[i];
-                modal.querySelector('.about__btn-modal').href = urls[i];
+                modal.querySelector('.modal__portfolio-title').textContent = sites[i].title;
+                modal.querySelector('img').src = sites[i].image;
+                modal.querySelector('.about__btn-modal').href = sites[i].url;
+                modal.querySelector('.first-child').textContent = sites[i].stack;
+                modal.querySelector('.last-child').textContent = sites[i].data;
                 modal.classList.remove('hideModal');
                 modal.classList.add('showModal');
                 modal.classList.remove('noactive');
